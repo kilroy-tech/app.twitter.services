@@ -1,0 +1,52 @@
+{
+    "manifestVersion": 2,
+    "id"            : "twitter.services",
+    "displayName"   : "Twitter Services",
+    "desc"          : "Twitter utility services",
+    "version"       : "1.0.2",
+    "author"        : "Kilroy.tech",
+    "authorInfoUrl" : "http://kilroy.tech",
+    "appInfoUrl"    : "/apps/twitter.services/index.pug",
+    "appImageUrl"   : "/apps/twitter.services/logo.svg",
+    "locked"        : true,
+    "override"      : true,
+    "hidden"        : false,
+    "pdClasses"     : {
+        "config"    : {
+            "pdName" : "config",
+            "pdAlias": "twitter.services.config",
+            "desc"  : "Twitter Services Configuration",
+            "runOnStart": true,
+            "visible": true,
+            "multipleAllowed": false,
+            "init"  : "init_hook",
+            "resume": "resume_hook",
+            "pause" : "pause_hook",
+            "stop"  : "stop_hook"
+        },
+        "client"    : {
+            "pdName" : "client",
+            "pdAlias": "twitter.services.client",
+            "desc"  : "Twitter Agent Client",
+            "runOnStart": false,
+            "visible": true,
+            "multipleAllowed": true,
+            "init"  : "init_hook",
+            "resume": "resume_hook",
+            "pause" : "pause_hook",
+            "stop"  : "stop_hook"
+        },
+        "viewer"    : {
+            "pdName" : "viewer",
+            "pdAlias": "twitter.services.viewer",
+            "desc"  : "Twitter Viewer",
+            "runOnStart": false,
+            "visible": true,
+            "multipleAllowed": true,
+            "init"  : "init_hook",
+            "resume": "resume_hook",
+            "pause" : "pause_hook",
+            "stop"  : "stop_hook"
+        }
+    }
+}

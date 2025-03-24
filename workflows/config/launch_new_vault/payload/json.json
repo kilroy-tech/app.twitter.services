@@ -1,0 +1,340 @@
+{
+    "name": "twitter.services/config/launch_new_vault",
+    "version": "1",
+    "description": "",
+    "isInteractive": true,
+    "clean_up": true,
+    "inputs": [],
+    "outputs": [
+        "ta_*",
+        "ex_*"
+    ],
+    "args": {
+        "role": "*"
+    },
+    "steps": [
+        {
+            "operation": "set_value",
+            "isServer": true,
+            "args": {
+                "variable": "wfCleanupFlag",
+                "value": "1"
+            }
+        },
+        {
+            "operation": "step_group",
+            "isServer": true,
+            "args": {
+                "role": "*",
+                "message": "",
+                "timer": "24",
+                "isInteractive": true,
+                "canTerminate": true,
+                "success": [
+                    {
+                        "operation": "set_var_to",
+                        "isServer": true,
+                        "args": {
+                            "var_name": "ta_template_guid",
+                            "push_array_name": null,
+                            "field_name": null,
+                            "var_expr": {
+                                "type": "current_time",
+                                "arg": "x"
+                            }
+                        }
+                    },
+                    {
+                        "operation": "set_var_to",
+                        "isServer": true,
+                        "args": {
+                            "var_name": "ta_template_kind",
+                            "push_array_name": null,
+                            "field_name": null,
+                            "var_expr": {
+                                "type": "value",
+                                "arg": "AGENT"
+                            }
+                        }
+                    },
+                    {
+                        "operation": "set_var_to",
+                        "isServer": true,
+                        "args": {
+                            "var_name": "formData",
+                            "push_array_name": null,
+                            "field_name": null,
+                            "var_expr": {
+                                "type": "value",
+                                "arg": {}
+                            }
+                        }
+                    },
+                    {
+                        "operation": "set_var_to",
+                        "isServer": true,
+                        "args": {
+                            "var_name": "formData",
+                            "push_array_name": null,
+                            "field_name": "ta_desc",
+                            "var_expr": {
+                                "type": "value",
+                                "arg": ""
+                            }
+                        }
+                    },
+                    {
+                        "operation": "set_var_to",
+                        "isServer": true,
+                        "args": {
+                            "var_name": "formData",
+                            "push_array_name": null,
+                            "field_name": "ex_style",
+                            "var_expr": {
+                                "type": "variable",
+                                "arg": "ex_style"
+                            }
+                        }
+                    },
+                    {
+                        "operation": "set_var_to",
+                        "isServer": true,
+                        "args": {
+                            "var_name": "formData",
+                            "push_array_name": null,
+                            "field_name": "ta_base_url",
+                            "var_expr": {
+                                "type": "variable",
+                                "arg": "ta_base_url"
+                            }
+                        }
+                    },
+                    {
+                        "operation": "set_var_to",
+                        "isServer": true,
+                        "args": {
+                            "var_name": "formData",
+                            "push_array_name": null,
+                            "field_name": "ta_command",
+                            "var_expr": {
+                                "type": "variable",
+                                "arg": "ta_command"
+                            }
+                        }
+                    },
+                    {
+                        "operation": "set_var_to",
+                        "isServer": true,
+                        "args": {
+                            "var_name": "formData",
+                            "push_array_name": null,
+                            "field_name": "ta_count",
+                            "var_expr": {
+                                "type": "value",
+                                "arg": "1"
+                            }
+                        }
+                    },
+                    {
+                        "operation": "set_var_to",
+                        "isServer": true,
+                        "args": {
+                            "var_name": "formData",
+                            "push_array_name": null,
+                            "field_name": "ta_simple_flag",
+                            "var_expr": {
+                                "type": "variable",
+                                "arg": "ta_simple_flag"
+                            }
+                        }
+                    },
+                    {
+                        "operation": "set_var_to",
+                        "isServer": true,
+                        "args": {
+                            "var_name": "formData",
+                            "push_array_name": null,
+                            "field_name": "ta_arg",
+                            "var_expr": {
+                                "type": "variable",
+                                "arg": "ta_arg"
+                            }
+                        }
+                    },
+                    {
+                        "operation": "set_var_to",
+                        "isServer": true,
+                        "args": {
+                            "var_name": "formData",
+                            "push_array_name": null,
+                            "field_name": "ta_check_interval",
+                            "var_expr": {
+                                "type": "variable",
+                                "arg": "ta_check_interval"
+                            }
+                        }
+                    },
+                    {
+                        "operation": "set_var_to",
+                        "isServer": true,
+                        "args": {
+                            "var_name": "formData",
+                            "push_array_name": null,
+                            "field_name": "ta_swarm",
+                            "var_expr": {
+                                "type": "variable",
+                                "arg": "ta_swarm"
+                            }
+                        }
+                    },
+                    {
+                        "operation": "set_var_to",
+                        "isServer": true,
+                        "args": {
+                            "var_name": "formData",
+                            "push_array_name": null,
+                            "field_name": "ta_agent_name",
+                            "var_expr": {
+                                "type": "variable",
+                                "arg": "ta_agent_name"
+                            }
+                        }
+                    },
+                    {
+                        "operation": "display_inline_form",
+                        "isServer": false,
+                        "args": {
+                            "formID": "default",
+                            "form": {
+                                "formPanels": [
+                                    {
+                                        "name": "Configure New Twitter Agent...",
+                                        "description": "",
+                                        "sections": [
+                                            {
+                                                "fields": [
+                                                    {
+                                                        "name": "ta_desc",
+                                                        "type": "text",
+                                                        "label": "Description",
+                                                        "placeholder": ""
+                                                    },
+                                                    {
+                                                        "name": "ta_base_url",
+                                                        "type": "text",
+                                                        "label": "Base URL for TwitterAgentServer",
+                                                        "placeholder": "http://localhost:3300/v1"
+                                                    },
+                                                    {
+                                                        "name": "ta_command",
+                                                        "type": "dropdown",
+                                                        "label": "Agent Command",
+                                                        "pairs_as_string": true,
+                                                        "pairs": "[  {\"name\" : \"getLatestTweet\", \"value\" : \"getLatestTweet\" },{\"name\" : \"getTweets\", \"value\" : \"getTweets\" },{\"name\" : \"getTweetsAndReplies\", \"value\" : \"getTweetsAndReplies\" },{\"name\" : \"fetchListTweets\", \"value\" : \"fetchListTweets\" }]"
+                                                    },
+                                                    {
+                                                        "name": "ta_arg",
+                                                        "type": "text",
+                                                        "label": "Twitter User/List ID",
+                                                        "placeholder": ""
+                                                    },
+                                                    {
+                                                        "name": "ta_count",
+                                                        "type": "text",
+                                                        "label": "Count",
+                                                        "placeholder": "0"
+                                                    },
+                                                    {
+                                                        "name": "ta_simple_flag",
+                                                        "type": "dropdown",
+                                                        "label": "Simplified JSON",
+                                                        "pairs_as_string": true,
+                                                        "pairs": "[  {\"name\" : \"true\", \"value\" : true },{\"name\" : \"false\", \"value\" : false }]"
+                                                    },
+                                                    {
+                                                        "name": "ta_check_interval",
+                                                        "type": "text",
+                                                        "label": "Time between checks (seconds)",
+                                                        "placeholder": "300"
+                                                    },
+                                                    {
+                                                        "name": "ex_style",
+                                                        "type": "dropdown",
+                                                        "label": "Style",
+                                                        "pairs_as_string": true,
+                                                        "pairs": "[  {\"name\" : \"Light\", \"value\" : 0 },{\"name\" : \"Dark\", \"value\" : 1 },{\"name\" : \"Dim\", \"value\" : 2 }]"
+                                                    },
+                                                    {
+                                                        "name": "ta_swarm",
+                                                        "type": "text",
+                                                        "label": "Swarm to publish to",
+                                                        "placeholder": "swarm_name"
+                                                    },
+                                                    {
+                                                        "name": "ta_agent_name",
+                                                        "type": "text",
+                                                        "label": "Agent Name to publish as",
+                                                        "placeholder": "some_agent_name"
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            "success": [
+                                {
+                                    "operation": "app_services",
+                                    "isServer": true,
+                                    "args": {
+                                        "cmd": "start_app_diagram",
+                                        "pdclass": "client",
+                                        "pdalias": "",
+                                        "pddesc": "${ta_template_kind}:${ta_desc}",
+                                        "pdargs": "{\"ta_desc\":\"${ta_desc}\",\"ta_base_url\":\"${ta_base_url}\",\"ta_command\":\"${ta_command}\",\"ta_arg\":\"${ta_arg}\",\"ta_count\":\"${ta_count}\",\"ta_simple_flag\":\"${ta_simple_flag}\",\"ta_template_guid\":\"${ta_template_guid}\",\"ta_check_interval\":\"${ta_check_interval}\",\"ex_style\":\"${ex_style}\",\"ta_swarm\":\"${ta_swarm}\",\"ta_agent_name\":\"${ta_agent_name}\"}"
+                                    }
+                                },
+                                {
+                                    "operation": "set_var_to",
+                                    "isServer": true,
+                                    "args": {
+                                        "var_name": "res",
+                                        "push_array_name": null,
+                                        "field_name": null,
+                                        "var_expr": {
+                                            "type": "results",
+                                            "arg": "__results__"
+                                        }
+                                    }
+                                },
+                                {
+                                    "operation": "app_services",
+                                    "isServer": false,
+                                    "args": {
+                                        "cmd": "show_app_diagram",
+                                        "pdalias": "${res}"
+                                    }
+                                },
+                                {
+                                    "operation": "set_value",
+                                    "isServer": true,
+                                    "args": {
+                                        "variable": "ta_msg",
+                                        "value": "Launched as ${ta_desc}"
+                                    }
+                                }
+                            ],
+                            "failure": []
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "operation": "end",
+            "isServer": true,
+            "args": null
+        }
+    ],
+    "externalForms": {}
+}

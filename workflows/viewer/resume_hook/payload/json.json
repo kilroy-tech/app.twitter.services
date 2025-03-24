@@ -1,0 +1,82 @@
+{
+    "name": "twitter.services/viewer/resume_hook",
+    "version": "1",
+    "description": "",
+    "isInteractive": false,
+    "clean_up": true,
+    "inputs": [],
+    "outputs": [
+        "ta_*"
+    ],
+    "args": {
+        "role": "*"
+    },
+    "steps": [
+        {
+            "operation": "set_value",
+            "isServer": true,
+            "args": {
+                "variable": "wfCleanupFlag",
+                "value": "1"
+            }
+        },
+        {
+            "operation": "step_group",
+            "isServer": true,
+            "args": {
+                "role": "system",
+                "message": "",
+                "timer": "24",
+                "isInteractive": false,
+                "canTerminate": false,
+                "success": [
+                    {
+                        "operation": "if_then_else",
+                        "isServer": true,
+                        "args": {
+                            "condition": "${ta_swarm_connected}",
+                            "success": [
+                                {
+                                    "operation": "swarm_command",
+                                    "isServer": true,
+                                    "args": {
+                                        "command": "join",
+                                        "command_args": {
+                                            "topic": "${ta_swarm}",
+                                            "alias": "${process_diagram_id}",
+                                            "webhook": "swarm_hook",
+                                            "seed": ""
+                                        }
+                                    }
+                                },
+                                {
+                                    "operation": "set_value",
+                                    "isServer": true,
+                                    "args": {
+                                        "variable": "ta_connected_color",
+                                        "value": "#00FF00"
+                                    }
+                                },
+                                {
+                                    "operation": "set_value",
+                                    "isServer": true,
+                                    "args": {
+                                        "variable": "ta_connected_msg",
+                                        "value": "Connected"
+                                    }
+                                }
+                            ],
+                            "failure": []
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "operation": "end",
+            "isServer": true,
+            "args": null
+        }
+    ],
+    "externalForms": {}
+}

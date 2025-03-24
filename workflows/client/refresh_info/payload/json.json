@@ -1,0 +1,141 @@
+{
+    "name": "twitter.services/client/refresh_info",
+    "version": "1",
+    "description": "",
+    "isInteractive": false,
+    "clean_up": true,
+    "inputs": [],
+    "outputs": [
+        "ta_msg",
+        "ta_last_results"
+    ],
+    "args": {
+        "role": "*"
+    },
+    "steps": [
+        {
+            "operation": "set_value",
+            "isServer": true,
+            "args": {
+                "variable": "wfCleanupFlag",
+                "value": "1"
+            }
+        },
+        {
+            "operation": "step_group",
+            "isServer": true,
+            "args": {
+                "role": "system",
+                "message": "",
+                "timer": "24",
+                "isInteractive": false,
+                "canTerminate": false,
+                "success": [
+                    {
+                        "operation": "set_value",
+                        "isServer": true,
+                        "args": {
+                            "variable": "url",
+                            "value": "${ta_base_url}/${ta_command}/${ta_arg}/${ta_count}/${ta_simple_flag}"
+                        }
+                    },
+                    {
+                        "operation": "call_web_service",
+                        "isServer": true,
+                        "args": {
+                            "url": "${url}",
+                            "method": "GET",
+                            "payload": "",
+                            "mime_type": "application/json",
+                            "headers": "{\"User-Agent\" : \"Rebar Workflow\"}"
+                        }
+                    },
+                    {
+                        "operation": "set_var_to",
+                        "isServer": true,
+                        "args": {
+                            "var_name": "ta_last_results",
+                            "push_array_name": null,
+                            "field_name": null,
+                            "var_expr": {
+                                "type": "results",
+                                "arg": "__results__"
+                            }
+                        }
+                    },
+                    {
+                        "operation": "set_var_to",
+                        "isServer": true,
+                        "args": {
+                            "var_name": "ta_last_results",
+                            "push_array_name": null,
+                            "field_name": "from",
+                            "var_expr": {
+                                "type": "variable",
+                                "arg": "ta_agent_name"
+                            }
+                        }
+                    },
+                    {
+                        "operation": "set_var_to",
+                        "isServer": true,
+                        "args": {
+                            "var_name": "sres",
+                            "push_array_name": null,
+                            "field_name": null,
+                            "var_expr": {
+                                "type": "json_string",
+                                "arg": {
+                                    "type": "variable",
+                                    "arg": "ta_last_results"
+                                },
+                                "formatted": true
+                            }
+                        }
+                    },
+                    {
+                        "operation": "swarm_command",
+                        "isServer": true,
+                        "args": {
+                            "command": "publish",
+                            "command_args": {
+                                "topic": "${ta_swarm}",
+                                "data": {
+                                    "type": "variable",
+                                    "arg": "ta_last_results"
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "operation": "set_var_to",
+                        "isServer": true,
+                        "args": {
+                            "var_name": "time",
+                            "push_array_name": null,
+                            "field_name": null,
+                            "var_expr": {
+                                "type": "current_time",
+                                "arg": "M/D/YY, hh:mm:ss Z"
+                            }
+                        }
+                    },
+                    {
+                        "operation": "set_value",
+                        "isServer": true,
+                        "args": {
+                            "variable": "ta_msg",
+                            "value": "Updated: ${time}\n${sres}"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "operation": "end",
+            "isServer": true,
+            "args": null
+        }
+    ],
+    "externalForms": {}
+}
