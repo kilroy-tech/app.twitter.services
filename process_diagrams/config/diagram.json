@@ -361,6 +361,46 @@
                 "server_only": "false",
                 "key": -18,
                 "loc": "-332 -56"
+            },
+            {
+                "category": "webhook",
+                "title": "create_viewer_agent",
+                "rsize": "228 40",
+                "trigger_name": "create_viewer_agent",
+                "action_workflow": "twitter.services/config/create_viewer_agent",
+                "action_workflow_id": "",
+                "action_args": "{}",
+                "action_type": "WORKFLOW",
+                "action_trigger": "",
+                "server_only": "true",
+                "dash": [
+                    3,
+                    2
+                ],
+                "visible": true,
+                "zOrder": 120,
+                "key": -19,
+                "loc": "-688 -28"
+            },
+            {
+                "category": "webhook",
+                "title": "delete_viewer_agent",
+                "rsize": "228 40",
+                "trigger_name": "delete_viewer_agent",
+                "action_workflow": "twitter.services/config/delete_viewer_agent",
+                "action_workflow_id": "",
+                "action_args": "{}",
+                "action_type": "WORKFLOW",
+                "action_trigger": "",
+                "server_only": "true",
+                "dash": [
+                    3,
+                    2
+                ],
+                "visible": true,
+                "zOrder": 120,
+                "key": -20,
+                "loc": "-688 16"
             }
         ],
         "linkDataArray": []

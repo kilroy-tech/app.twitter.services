@@ -3,7 +3,7 @@
     "id"            : "twitter.services",
     "displayName"   : "Twitter Services",
     "desc"          : "Twitter utility services",
-    "version"       : "1.0.2",
+    "version"       : "1.0.3",
     "author"        : "Kilroy.tech",
     "authorInfoUrl" : "http://kilroy.tech",
     "appInfoUrl"    : "/apps/twitter.services/index.pug",
